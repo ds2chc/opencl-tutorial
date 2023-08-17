@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.16.3)
+project(ocl VERSION 0.0.1 LANGUAGES CXX)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+# Import OpenCL library
+find_package(OpenCL REQUIRED)
+message("OpenCL_FOUND: ${OpenCL_FOUND}")
+message("OpenCL_INCLUDE_DIRS: ${OpenCL_INCLUDE_DIRS}")
+message("OpenCL_LIBRARIES: ${OpenCL_LIBRARIES}")
+
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/exec)
+
