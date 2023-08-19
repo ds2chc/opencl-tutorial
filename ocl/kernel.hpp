@@ -65,13 +65,25 @@ namespace ocl {
     }
 
     template <typename T>
+    void SetArgument(const size_t index, const Buffer<T>& arg) {
+      CL_CHECK_ERROR(
+        clSetKernelArg(
+          object_,
+          static_cast<cl_uint>(index),
+          sizeof(cl_mem),
+          static_cast<const void*>(&arg())
+        )
+      );
+    }
+
+    template <typename T>
     void SetArgument(const size_t index, Buffer<T>& arg) {
       CL_CHECK_ERROR(
         clSetKernelArg(
           object_,
           static_cast<cl_uint>(index),
-          sizeof(T),
-          static_cast<const void*>(&arg())
+          sizeof(cl_mem),
+          static_cast<void*>(&arg())
         )
       );
     }
